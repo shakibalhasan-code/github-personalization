@@ -2,12 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../core/utils/themes/app_colors.dart';
 import '../../../core/utils/themes/app_styles.dart';
+import '../../../data/models/repository_model.dart';
 
 class RepositoryCard extends StatelessWidget {
-  final int index;
+  final GithubRepo repository;
   final VoidCallback onTap;
 
-  const RepositoryCard({super.key, required this.index, required this.onTap});
+  const RepositoryCard({
+    super.key,
+    required this.repository,
+    required this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -39,8 +44,8 @@ class RepositoryCard extends StatelessWidget {
       children: [
         CircleAvatar(
           radius: 20.r,
+          backgroundImage: NetworkImage(repository.owner.avatarUrl),
           backgroundColor: AppColors.lightPrimaryContainer,
-          child: Icon(Icons.code, size: 20.r, color: AppColors.lightPrimary),
         ),
         SizedBox(width: 12.w),
         Expanded(
@@ -48,7 +53,7 @@ class RepositoryCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Repository ${index + 1}',
+                repository.name,
                 style: AppTextStyles.titleMedium.copyWith(
                   fontWeight: FontWeight.bold,
                 ),
@@ -57,7 +62,7 @@ class RepositoryCard extends StatelessWidget {
               ),
               SizedBox(height: 2.h),
               Text(
-                'owner/repo-name',
+                repository.fullName,
                 style: AppTextStyles.bodySmall.copyWith(
                   color: AppColors.lightOutline,
                 ),
@@ -79,7 +84,9 @@ class RepositoryCard extends StatelessWidget {
   /// Repository Description
   Widget _buildRepositoryDescription() {
     return Text(
-      'This is a sample repository description that explains what the project is about and its main features.',
+      repository.description.isNotEmpty
+          ? repository.description
+          : 'No description available',
       style: AppTextStyles.bodyMedium,
       maxLines: 2,
       overflow: TextOverflow.ellipsis,
@@ -90,11 +97,11 @@ class RepositoryCard extends StatelessWidget {
   Widget _buildRepositoryStats() {
     return Row(
       children: [
-        _buildStatItem(Icons.star, '1.2k'),
+        _buildStatItem(Icons.star, repository.formattedStars),
         SizedBox(width: 16.w),
-        _buildStatItem(Icons.fork_right, '345'),
-        SizedBox(width: 16.w),
-        _buildLanguageTag('Dart'),
+        _buildStatItem(Icons.fork_right, repository.formattedForks),
+        if (repository.language.isNotEmpty)
+          _buildLanguageTag(repository.language),
       ],
     );
   }

@@ -13,20 +13,40 @@ class RepositoryList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: Obx(() {
-        if (controller.isLoading.value) {
+        if (controller.isLoading.value && controller.repositories.isEmpty) {
           return const Center(child: CircularProgressIndicator());
         }
 
-        return ListView.separated(
-          padding: EdgeInsets.all(16.w),
-          itemCount: 10, // TODO: Replace with controller.repositories.length
-          separatorBuilder: (context, index) => SizedBox(height: 12.h),
-          itemBuilder: (context, index) {
-            return RepositoryCard(
-              index: index,
-              onTap: () => controller.navigateToDetails(index),
-            );
-          },
+        if (controller.repositories.isEmpty) {
+          return Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(Icons.search_off, size: 64.r, color: Colors.grey),
+                SizedBox(height: 16.h),
+                Text(
+                  'No repositories found',
+                  style: TextStyle(fontSize: 16.sp, color: Colors.grey),
+                ),
+              ],
+            ),
+          );
+        }
+
+        return RefreshIndicator(
+          onRefresh: controller.refreshRepositories,
+          child: ListView.separated(
+            padding: EdgeInsets.all(16.w),
+            itemCount: controller.repositories.length,
+            separatorBuilder: (context, index) => SizedBox(height: 12.h),
+            itemBuilder: (context, index) {
+              final repository = controller.repositories[index];
+              return RepositoryCard(
+                repository: repository,
+                onTap: () => controller.navigateToDetails(repository),
+              );
+            },
+          ),
         );
       }),
     );

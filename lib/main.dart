@@ -3,12 +3,16 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:github_per/core/constant/app_constant.dart';
 import 'package:github_per/core/utils/themes/app_themes.dart';
 import 'package:github_per/modules/home/home_view.dart';
 import 'package:logger/logger.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await GetStorage.init();
+
   var logger = Logger();
   try {
     logger.i("Starting ${AppConstant.appName}...");
