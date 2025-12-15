@@ -58,21 +58,51 @@ class AppThemes {
 
     // Text Theme
     textTheme: TextTheme(
-      displayLarge: AppTextStyles.displayLarge,
-      displayMedium: AppTextStyles.displayMedium,
-      displaySmall: AppTextStyles.displaySmall,
-      headlineLarge: AppTextStyles.headlineLarge,
-      headlineMedium: AppTextStyles.headlineMedium,
-      headlineSmall: AppTextStyles.headlineSmall,
-      titleLarge: AppTextStyles.titleLarge,
-      titleMedium: AppTextStyles.titleMedium,
-      titleSmall: AppTextStyles.titleSmall,
-      bodyLarge: AppTextStyles.bodyLarge,
-      bodyMedium: AppTextStyles.bodyMedium,
-      bodySmall: AppTextStyles.bodySmall,
-      labelLarge: AppTextStyles.labelLarge,
-      labelMedium: AppTextStyles.labelMedium,
-      labelSmall: AppTextStyles.labelSmall,
+      displayLarge: AppTextStyles.displayLarge.copyWith(
+        color: AppColors.lightOnSurface,
+      ),
+      displayMedium: AppTextStyles.displayMedium.copyWith(
+        color: AppColors.lightOnSurface,
+      ),
+      displaySmall: AppTextStyles.displaySmall.copyWith(
+        color: AppColors.lightOnSurface,
+      ),
+      headlineLarge: AppTextStyles.headlineLarge.copyWith(
+        color: AppColors.lightOnSurface,
+      ),
+      headlineMedium: AppTextStyles.headlineMedium.copyWith(
+        color: AppColors.lightOnSurface,
+      ),
+      headlineSmall: AppTextStyles.headlineSmall.copyWith(
+        color: AppColors.lightOnSurface,
+      ),
+      titleLarge: AppTextStyles.titleLarge.copyWith(
+        color: AppColors.lightOnSurface,
+      ),
+      titleMedium: AppTextStyles.titleMedium.copyWith(
+        color: AppColors.lightOnSurface,
+      ),
+      titleSmall: AppTextStyles.titleSmall.copyWith(
+        color: AppColors.lightOnSurface,
+      ),
+      bodyLarge: AppTextStyles.bodyLarge.copyWith(
+        color: AppColors.lightOnSurface,
+      ),
+      bodyMedium: AppTextStyles.bodyMedium.copyWith(
+        color: AppColors.lightOnSurface,
+      ),
+      bodySmall: AppTextStyles.bodySmall.copyWith(
+        color: AppColors.lightOnSurface,
+      ),
+      labelLarge: AppTextStyles.labelLarge.copyWith(
+        color: AppColors.lightOnSurface,
+      ),
+      labelMedium: AppTextStyles.labelMedium.copyWith(
+        color: AppColors.lightOnSurface,
+      ),
+      labelSmall: AppTextStyles.labelSmall.copyWith(
+        color: AppColors.lightOnSurface,
+      ),
     ),
 
     // Card Theme
@@ -142,7 +172,9 @@ class AppThemes {
         borderSide: BorderSide(color: AppColors.lightError, width: 2),
       ),
       contentPadding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
-      labelStyle: AppTextStyles.bodyLarge,
+      labelStyle: AppTextStyles.bodyLarge.copyWith(
+        color: AppColors.lightOnSurface,
+      ),
       hintStyle: AppTextStyles.bodyLarge.copyWith(
         color: AppColors.lightOutline,
       ),
